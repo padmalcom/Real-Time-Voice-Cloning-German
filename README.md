@@ -1,2 +1,31 @@
-# Real-Time-Voice-Cloning-German
-German model for https://github.com/CorentinJ/Real-Time-Voice-Cloning
+## First things first
+- Trained on female German voices of m-ailabs
+- Tests show that the vocoder training is not neccessary, so focus on encoder and synthesizer
+- I had to edit some parts of the implementation to make it work with m-ailabs
+- m-ailabs requires a lot of cleaning (at least for German voices). I added a script to do most of the work.
+	- mailab_normalize_text.py: Creates text files besides each wav file of the m-ailabs dataset which apparently is required.
+
+## How to run?
+Please note that all changes I did were made for windows. You might want to adapt it for linux.
+
+# Encoder
+- python encoder_preprocess.py E:\Datasets\
+- python encoder_train.py my_run E:\Datasets\SV2TTS\encoder
+
+# Synthesizer
+- Make sure you updated synthesizer/utils/symbols.py for your language
+- python synthesizer_preprocess_audio.py E:\Datasets\ --subfolders de_DE\by_book\female\ --dataset "" --no_alignments --wav_dir
+- python synthesizer_preprocess_embeds.py E:\Datasets\SV2TTS\synthesizer
+- python synthesizer_train.py my_run E:\Datasets\SV2TTS\synthesizer
+
+# Vocoder (You really do not need to train the vocoder, it works well as the pretrained model is - at least for German)
+- pip install librosa==0.7.2
+- python vocoder_preprocess.py E:\Datasets\ --model_dir=synthesizer/saved_models/logs-my_run/
+- python vocoder_train.py my_run E:\Datasets\
+
+# Toolbox
+- pip install matplotlib==3.2.2 #required for toolbox to work
+
+## Todos and Learnings
+- Getting the Toolbox to run with a specific voice of the four voices does not seem to work properly. I still have to figure out why (not).
+- Next experiment will be to merge all voices into one voice package and see if the result improves.
