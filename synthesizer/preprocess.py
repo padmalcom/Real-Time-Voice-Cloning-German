@@ -91,8 +91,10 @@ def preprocess_speaker(speaker_dir, out_dir: Path, skip_existing: bool, hparams,
                         print("Text_fpath does not exist: " + str(text_fpath))
                         # Check for .normalized.txt (LibriTTS)
                         text_fpath = wav_fpath.with_suffix(".normalized.txt")
-                        assert text_fpath.exists()
-                    with text_fpath.open("r") as text_file:
+                        #assert text_fpath.exists()
+                        if not text_fpath.exists():
+                            continue
+                    with text_fpath.open("r", encoding="utf-8") as text_file:
                         text = "".join([line for line in text_file])
                         text = text.replace("\"", "")
                         text = text.strip()

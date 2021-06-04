@@ -123,7 +123,7 @@ def preprocess_mailabs(datasets_root: Path, out_dir: Path, skip_existing=False):
         if not dataset_root:
             return
 			
-        speaker_dirs = list(dataset_root.glob("female/*")) # add male
+        speaker_dirs = list(dataset_root.glob("female/*")) + list(dataset_root.glob("male/*")) + list(dataset_root.glob("mix/*"))
         print(speaker_dirs)
         _preprocess_speaker_dirs(speaker_dirs, dataset_name, datasets_root, out_dir, "wav", skip_existing, logger)
 
