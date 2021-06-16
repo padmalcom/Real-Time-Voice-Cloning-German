@@ -10,16 +10,17 @@ Please note that all changes I did were made for windows. You might want to adap
 
 # Encoder
 - python encoder_preprocess.py E:\Datasets\
-- python encoder_train.py my_run E:\Datasets\SV2TTS\encoder
+- python encoder_train.py my_run E:\Datasets\SV2TTS\encoder --no_visdom
 
 # Synthesizer
 - Make sure you updated synthesizer/utils/symbols.py for your language
-- python synthesizer_preprocess_audio.py E:\Datasets\ --subfolders de_DE\by_book\female\ --dataset "" --no_alignments --wav_dir
-- python synthesizer_preprocess_embeds.py E:\Datasets\SV2TTS\synthesizer
+- python synthesizer_preprocess_audio.py E:\Datasets\ --subfolders de_DE\by_book\female\,de_DE\by_book\male\,de_DE\by_book\mix\ --dataset "" --no_alignments --wav_dir
+- python synthesizer_preprocess_embeds.py E:\Datasets\SV2TTS\synthesizer --encoder_model_fpath encoder/saved_models/my_run.pt
 - python synthesizer_train.py my_run E:\Datasets\SV2TTS\synthesizer
 
 # Vocoder (You really do not need to train the vocoder, it works well as the pretrained model is - at least for German)
-- pip install librosa==0.7.2
+- pip install librosa==0.8.1
+- installation of correct numba version is no longer neccessary
 - python vocoder_preprocess.py E:\Datasets\ --model_dir=synthesizer/saved_models/logs-my_run/
 - python vocoder_train.py my_run E:\Datasets\
 
