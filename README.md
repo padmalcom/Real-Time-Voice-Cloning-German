@@ -1,9 +1,11 @@
 ## First things first
-- Trained on female German voices of m-ailabs
+- Trained on female and male German voices from m-ailabs
 - Tests show that the vocoder training is not neccessary, so focus on encoder and synthesizer
 - I had to edit some parts of the implementation to make it work with m-ailabs
 - m-ailabs requires a lot of cleaning (at least for German voices). I added a script to do most of the work.
 	- mailab_normalize_text.py: Creates text files besides each wav file of the m-ailabs dataset which apparently is required.
+	
+- Works with the following commit of Real-Time-Voice-Cloning: https://github.com/CorentinJ/Real-Time-Voice-Cloning/commit/95adc699c1deb637f485e85a5107d40da0ad94fc
 
 ## How to run?
 Please note that all changes I did were made for windows. You might want to adapt it for linux.
@@ -29,5 +31,4 @@ Please note that all changes I did were made for windows. You might want to adap
 - python demo_toolbox.py -d E:\Datasets\
 
 ## Todos and Learnings
-- Getting the Toolbox to run with a specific voice of the four voices does not seem to work properly. I still have to figure out why (not).
-- Next experiment will be to merge all voices into one voice package and see if the result improves.
+- Application for a specific voice needs fine tuning for the specific voice.
