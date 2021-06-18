@@ -26,6 +26,7 @@ Please note that all changes I did were made for windows. You might want to adap
 
 # Toolbox
 - pip install matplotlib==3.2.2 #required for toolbox to work
+- python demo_toolbox.py -d E:\Datasets\
 
 ## Todos and Learnings
 - Getting the Toolbox to run with a specific voice of the four voices does not seem to work properly. I still have to figure out why (not).
