@@ -25,7 +25,9 @@ Please note that all changes I did were made for windows. You might want to adap
 - python synthesizer_preprocess_embeds.py E:\Datasets\SV2TTS\synthesizer --encoder_model_fpath encoder/saved_models/my_run.pt
 - python synthesizer_train.py my_run E:\Datasets\SV2TTS\synthesizer
 
-# Vocoder (You really do not need to train the vocoder, it works well as the pretrained model is - at least for German)
+# Vocoder
+- You really do not need to train the vocoder, it works well as the pretrained model is - at least for German
+- Create a folder E:\Datasets\SV2TTS\vocoder
 - python vocoder_preprocess.py E:\Datasets\ --model_dir=synthesizer/saved_models/my_run/
 - python vocoder_train.py my_run E:\Datasets\
 
