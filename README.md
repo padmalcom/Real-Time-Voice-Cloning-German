@@ -7,7 +7,10 @@
 	
 - Works with the following commit of Real-Time-Voice-Cloning: https://github.com/CorentinJ/Real-Time-Voice-Cloning/commit/95adc699c1deb637f485e85a5107d40da0ad94fc
 
-- Encoder trained for 107770 steps
+## Learn on Udemy
+The issue tracker here told me that the framework and models are not as easy to use as I first thought so I created a Udemy course to exactly teach step by step how to get everything up and running (get German training data, train encoder, synthesizer and vocoder, inference using UI and code):
+
+https://www.udemy.com/course/voice-cloning/learn/
 
 ## How to run?
 Please note that all changes I did were made for windows. You might want to adapt it for linux.
