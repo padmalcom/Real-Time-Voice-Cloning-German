@@ -52,7 +52,8 @@ if __name__ == '__main__':
 	print("Created the embedding")
 
 	texts = [in_text]
-	embeds = [embed]
+	#embeds = [embed]
+	embeds = [[0] * 256]
 
 	specs = synthesizer.synthesize_spectrograms(texts, embeds)
 	spec = specs[0]	

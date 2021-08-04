@@ -1,4 +1,4 @@
-name: rtvcg
+name: rtvc
 channels:
   - defaults
   - pytorch
