@@ -16,7 +16,7 @@ https://www.udemy.com/course/voice-cloning/learn/
 Please note that all changes I did were made for windows. You might want to adapt it for linux.
 
 # Dependencies
-- Install all dependencies from the environment.yml (conda update -n [MYENV] --file environment.yml
+- Install all dependencies from the environment.yml (conda env update -n [MYENV] --file environment.yml
 - If you don't use anaconda, copy all dependencies under -pip to a file requirements.txt and do a pip install -r requirements.txt
 - Install pytorch 1.7.1 with/without cuda, for cuda 10.1 it would be: pip install torch==1.7.1+cu101 torchvision==0.8.2+cu101 torchaudio==0.7.2 -f https://download.pytorch.org/whl/torch_stable.html
 

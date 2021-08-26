@@ -13,6 +13,8 @@ import torch
 import sys
 import os
 from audioread.exceptions import NoBackendError
+import sounddevice as sd
+import time
 
 if __name__ == '__main__':
         
@@ -52,8 +54,8 @@ if __name__ == '__main__':
 	print("Created the embedding")
 
 	texts = [in_text]
-	#embeds = [embed]
-	embeds = [[0] * 256]
+	embeds = [embed]
+	#embeds = [[0] * 256]
 
 	specs = synthesizer.synthesize_spectrograms(texts, embeds)
 	spec = specs[0]	
@@ -61,8 +63,14 @@ if __name__ == '__main__':
 
 	generated_wav = vocoder.infer_waveform(spec)
 	generated_wav = np.pad(generated_wav, (0, synthesizer.sample_rate), mode="constant")
-	generated_wav = encoder.preprocess_wav(generated_wav)	
+	generated_wav = encoder.preprocess_wav(generated_wav)
 	
-	sf.write(out_path, generated_wav.astype(np.float32), round(synthesizer.sample_rate / 1.1))	
+	write = True
+	if write:
+		sf.write(out_path, generated_wav.astype(np.float32), round(synthesizer.sample_rate / 1.0))	
+		print("Audio file has been written.")
 
-	print("Audio file has been written.")
+	audio_length = librosa.get_duration(generated_wav, sr = 14545)
+	sd.play(generated_wav.astype(np.float32), round(synthesizer.sample_rate / 1.0))
+	time.sleep(audio_length)
+	print("Done")
