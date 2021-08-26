@@ -61,9 +61,13 @@ if __name__ == '__main__':
 	spec = specs[0]	
 	print("Created the mel spectrogram")
 
-	generated_wav = vocoder.infer_waveform(spec)
-	generated_wav = np.pad(generated_wav, (0, synthesizer.sample_rate), mode="constant")
-	generated_wav = encoder.preprocess_wav(generated_wav)
+	griffin_lim = False
+	if not griffin_lim:
+		generated_wav = vocoder.infer_waveform(spec)
+		generated_wav = np.pad(generated_wav, (0, synthesizer.sample_rate), mode="constant")
+		generated_wav = encoder.preprocess_wav(generated_wav)
+	else:
+		generated_wav = Synthesizer.griffin_lim(spec)
 	
 	write = True
 	if write:
