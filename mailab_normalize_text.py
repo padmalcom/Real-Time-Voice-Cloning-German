@@ -1,6 +1,7 @@
 import argparse
 import os
 import csv
+import sys
 from glob import glob
 import codecs
 
@@ -9,7 +10,7 @@ if __name__ == "__main__":
 		description="Create normlized text files for each audio file in mailabs datasets.",
 		formatter_class=argparse.ArgumentDefaultsHelpFormatter
 	)
-	parser.add_argument("--datasets_root", type=str, help="Path to the mailabs root directory (e.g. '/training_data/de_DE').")
+	parser.add_argument("--datasets_root", type=str, help="Path to the mailabs root directory (e.g. '/training_data/fr_FR').")
 	# overwrite
 	# male, female, mix
 	# audio format
@@ -21,15 +22,15 @@ if __name__ == "__main__":
 	print("Searching speakers...")
 
 	# list female speakers
-	speaker_search_dir_female = os.path.join(args.datasets_root, "by_book\\female\\*\\")
+	speaker_search_dir_female = os.path.join(args.datasets_root, "female\\*\\")
 	female_speaker_dirs = glob(speaker_search_dir_female)
 	
 	# list male speakers
-	speaker_search_dir_male = os.path.join(args.datasets_root, "by_book\\male\\*\\")
+	speaker_search_dir_male = os.path.join(args.datasets_root, "male\\*\\")
 	male_speaker_dirs = glob(speaker_search_dir_male)
 	
 	# list mixed speakers
-	speaker_search_dir_mix = os.path.join(args.datasets_root, "by_book\\mix\\*\\")
+	speaker_search_dir_mix = os.path.join(args.datasets_root, "mix\\*\\")
 	mix_speaker_dirs = glob(speaker_search_dir_mix)
 	
 	all_speakers = female_speaker_dirs + male_speaker_dirs + mix_speaker_dirs
@@ -66,11 +67,21 @@ if __name__ == "__main__":
 	
 	# read metadata.csv
 	file_count = 0
+	maxInt = sys.maxsize
+	while True:
+		# decrease the maxInt value by factor 10 
+		# as long as the OverflowError occurs.
+		try:
+			csv.field_size_limit(maxInt)
+			break
+		except OverflowError:
+			maxInt = int(maxInt/10)
 	for wav_folder in wav_folders:
 		wav_folder_parent = os.path.dirname(os.path.dirname(wav_folder))
 		metadata_path = os.path.join(wav_folder_parent, "metadata.csv")
 		if os.path.exists(metadata_path):
 			with open(metadata_path, newline='', encoding='utf-8') as csvfile:
+				csv.field_size_limit(maxInt)
 				csv_reader = csv.reader(csvfile, delimiter='|')
 				for row in csv_reader:
 					txt_file_to_create = os.path.join(wav_folder, row[0] + ".txt")
