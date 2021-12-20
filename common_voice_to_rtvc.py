@@ -37,6 +37,8 @@ if __name__ == '__main__':
 				# strip silence
 				sound = strip_silence(sound)
 				if sound.duration_seconds > 0:
+					sound = sound.set_frame_rate(16000)
+					sound = sound.set_channels(1)
 					sound.export(os.path.join(target_folder, "wavs", filename + ".wav"), format="wav")
 					
 					# Write metadata.csv		
