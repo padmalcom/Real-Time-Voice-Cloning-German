@@ -8,7 +8,8 @@
 - Works with the following commit of Real-Time-Voice-Cloning: https://github.com/CorentinJ/Real-Time-Voice-Cloning/commit/95adc699c1deb637f485e85a5107d40da0ad94fc
 
 ## Support me
-Training models and creating tutorials takes time. I'd be happy to get your support
+Training models and creating tutorials takes time. I'd be happy to get your support.
+
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y11M25J7)
 
 ## Learn on Udemy
