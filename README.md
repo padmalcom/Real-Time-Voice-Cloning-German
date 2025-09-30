@@ -7,6 +7,9 @@
 	
 - Works with the following commit of Real-Time-Voice-Cloning: https://github.com/CorentinJ/Real-Time-Voice-Cloning/commit/95adc699c1deb637f485e85a5107d40da0ad94fc
 
+## Support me
+Training models and creating tutorials takes time. I'd be happy to get your support https://ko-fi.com/padmalcom
+
 ## Learn on Udemy
 The issue tracker here told me that the framework and models are not as easy to use as I first thought so I created a Udemy course to exactly teach step by step how to get everything up and running (get German training data, train encoder, synthesizer and vocoder, inference using UI and code):
 
